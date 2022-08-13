@@ -1,24 +1,41 @@
-const path = require('path')
-const ESLintPlugin = require('eslint-webpack-plugin')
-
 module.exports = {
-    entry: './src/index.ts',
-    mode: 'development',
-    devtool: false,
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
-    },
     module: {
         rules: [
             {
-                test: /\.ts$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: { presets: ['@babel/preset-typescript'] }
-                }
-            }
-        ]
-    },
-    plugins: [new ESLintPlugin({ extensions: ['.js', '.ts'] })]
-}
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                // 添加 autoprefixer 插件
+                                plugins: [require("autoprefixer")],
+                            },
+                        },
+                    }
+                ],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    "postcss-loader",
+                    "less-loader"
+                ],
+            },
+        ],
+    }
+};
