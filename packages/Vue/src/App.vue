@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h3>{{ message }}</h3>
+    123
   </div>
 </template>
 
@@ -15,6 +16,6 @@ export default {
 <style>
 h3 {
   margin: 40px 0 0;
-  color: #42b983;
+  color: #2c3e50;
 }
 </style>
